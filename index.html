@@ -267,24 +267,30 @@
   .hero-ctas{justify-content:center;margin-top:36px;gap:14px;flex-wrap:wrap;}
 
   /* --- Botones CTA hero (coloridos con hover llamativo) --- */
+  .hero-ctas{
+    display:flex;flex-wrap:wrap;justify-content:center;
+    gap:14px;margin-top:36px;
+  }
   .btn-cta{
-    position:relative;display:inline-flex;align-items:center;gap:10px;
-    padding:15px 26px;border-radius:100px;
+    position:relative;display:inline-flex;align-items:center;justify-content:center;
+    gap:10px;padding:15px 26px;border-radius:100px;
     font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;
-    text-decoration:none;color:#fff;border:none;cursor:pointer;
-    overflow:hidden;isolation:isolate;
+    text-decoration:none;color:#fff !important;border:none;cursor:pointer;
+    text-align:center;line-height:1.2;white-space:nowrap;
+    -webkit-tap-highlight-color:transparent;
     transition:transform .28s cubic-bezier(.22,.61,.36,1),
                box-shadow .28s ease,
                filter .25s ease;
   }
-  .btn-cta::before{
-    content:"";position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 80%);
-    transform:translateX(-120%);
-    transition:transform .6s cubic-bezier(.22,.61,.36,1);
+  .btn-cta::after{
+    content:"";position:absolute;top:0;left:-30%;width:40%;height:100%;
+    background:linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+    transform:skewX(-20deg);pointer-events:none;opacity:0;
+    transition:left .6s cubic-bezier(.22,.61,.36,1), opacity .3s ease;
+    border-radius:inherit;
   }
   .btn-cta:hover{transform:translateY(-3px) scale(1.04);filter:brightness(1.08);}
-  .btn-cta:hover::before{transform:translateX(120%);}
+  .btn-cta:hover::after{left:110%;opacity:1;}
   .btn-cta:active{transform:translateY(-1px) scale(1.01);}
 
   .btn-cta svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;}
@@ -295,33 +301,50 @@
   .btn-cta:hover .cta-arrow{transform:translateX(4px);}
 
   .btn-cta-tintas{
-    background:linear-gradient(135deg,var(--magenta) 0%,#ff5aa8 100%);
+    background-color:#e6007e;
+    background-image:linear-gradient(135deg,#e6007e 0%,#ff5aa8 100%);
     box-shadow:0 10px 24px rgba(230,0,126,0.32), 0 2px 6px rgba(230,0,126,0.18);
   }
   .btn-cta-tintas:hover{box-shadow:0 14px 32px rgba(230,0,126,0.45), 0 4px 10px rgba(230,0,126,0.25);}
 
   .btn-cta-impresoras{
-    background:linear-gradient(135deg,var(--cyan) 0%,#33c3ff 100%);
+    background-color:#00aeef;
+    background-image:linear-gradient(135deg,#00aeef 0%,#33c3ff 100%);
     box-shadow:0 10px 24px rgba(0,174,239,0.32), 0 2px 6px rgba(0,174,239,0.18);
   }
   .btn-cta-impresoras:hover{box-shadow:0 14px 32px rgba(0,174,239,0.45), 0 4px 10px rgba(0,174,239,0.25);}
 
   .btn-cta-insumos{
-    background:linear-gradient(135deg,var(--solvente) 0%,#ffb066 100%);
+    background-color:#ff7a1a;
+    background-image:linear-gradient(135deg,#ff7a1a 0%,#ffb066 100%);
     box-shadow:0 10px 24px rgba(255,122,26,0.32), 0 2px 6px rgba(255,122,26,0.18);
   }
   .btn-cta-insumos:hover{box-shadow:0 14px 32px rgba(255,122,26,0.45), 0 4px 10px rgba(255,122,26,0.25);}
 
   .btn-cta-color{
-    background:linear-gradient(135deg,var(--uv) 0%,#a68aff 100%);
+    background-color:#7c5cff;
+    background-image:linear-gradient(135deg,#7c5cff 0%,#a68aff 100%);
     box-shadow:0 10px 24px rgba(124,92,255,0.32), 0 2px 6px rgba(124,92,255,0.18);
   }
   .btn-cta-color:hover{box-shadow:0 14px 32px rgba(124,92,255,0.45), 0 4px 10px rgba(124,92,255,0.25);}
 
-  @media (max-width:640px){
-    .btn-cta{padding:13px 22px;font-size:14px;}
+  @media (max-width:720px){
+    .hero-ctas{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;
+      max-width:520px;margin-left:auto;margin-right:auto;
+    }
+    .btn-cta{
+      padding:13px 18px;font-size:13.5px;gap:8px;
+      white-space:normal;min-height:52px;
+    }
     .btn-cta svg{width:16px;height:16px;}
+    .btn-cta .cta-arrow{font-size:15px;margin-left:0;}
   }
+  @media (max-width:380px){
+    .hero-ctas{grid-template-columns:1fr;max-width:320px;}
+    .btn-cta{white-space:nowrap;}
+  }
+
 
   /* --- Printer slider --- */
   .printer-slider{
